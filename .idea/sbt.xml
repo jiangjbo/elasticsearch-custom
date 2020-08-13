@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScalaSbtSettings">
+    <option name="customLauncherEnabled" value="true" />
+    <option name="customLauncherPath" value="C:\tools\sbt\bin\sbt-launch.jar" />
+    <option name="customVMEnabled" value="true" />
+    <option name="customVMPath" value="C:\tools\java\jdk1.8.0_111" />
+    <option name="vmParameters" value="-Dsbt.global.base=C:/Users/16274/.sbt -Dsbt.repository.config=C:/Users/16274/.sbt/conf/repo.properties" />
+  </component>
+</project>
