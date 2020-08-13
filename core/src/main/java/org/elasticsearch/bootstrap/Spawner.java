@@ -115,7 +115,8 @@ final class Spawner implements Closeable {
              * http://hg.openjdk.java.net/jdk8/jdk8/jdk/file/687fd7c7986d/src/windows/native/java/lang/ProcessImpl_md.c#l319), this
              * limitation is in force. As such, we use the short name to avoid any such problems.
              */
-            command = Natives.getShortPathName(spawnPath.toString());
+            //command = Natives.getShortPathName(spawnPath.toString());
+            command = null;
         } else {
             command = spawnPath.toString();
         }

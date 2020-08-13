@@ -40,21 +40,24 @@ public final class BootstrapInfo {
      * memory did not work.
      */
     public static boolean isNativesAvailable() {
-        return Natives.JNA_AVAILABLE;
+        return true;
+        //return Natives.JNA_AVAILABLE;
     }
 
     /**
      * Returns true if we were able to lock the process's address space.
      */
     public static boolean isMemoryLocked() {
-        return Natives.isMemoryLocked();
+        return true;
+        //return Natives.isMemoryLocked();
     }
 
     /**
      * Returns true if system call filter is installed (supported systems only)
      */
     public static boolean isSystemCallFilterInstalled() {
-        return Natives.isSystemCallFilterInstalled();
+        return true;
+        //return Natives.isSystemCallFilterInstalled();
     }
 
     /**

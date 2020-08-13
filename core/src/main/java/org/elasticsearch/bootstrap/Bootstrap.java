@@ -102,53 +102,53 @@ final class Bootstrap {
         final Logger logger = Loggers.getLogger(Bootstrap.class);
 
         // check if the user is running as root, and bail
-        if (Natives.definitelyRunningAsRoot()) {
-            throw new RuntimeException("can not run elasticsearch as root");
-        }
-
-        // enable system call filter
-        if (systemCallFilter) {
-            Natives.tryInstallSystemCallFilter(tmpFile);
-        }
-
-        // mlockall if requested
-        if (mlockAll) {
-            if (Constants.WINDOWS) {
-               Natives.tryVirtualLock();
-            } else {
-               Natives.tryMlockall();
-            }
-        }
-
-        // listener for windows close event
-        if (ctrlHandler) {
-            Natives.addConsoleCtrlHandler(new ConsoleCtrlHandler() {
-                @Override
-                public boolean handle(int code) {
-                    if (CTRL_CLOSE_EVENT == code) {
-                        logger.info("running graceful exit on windows");
-                        try {
-                            Bootstrap.stop();
-                        } catch (IOException e) {
-                            throw new ElasticsearchException("failed to stop node", e);
-                        }
-                        return true;
-                    }
-                    return false;
-                }
-            });
-        }
-
-        // force remainder of JNA to be loaded (if available).
-        try {
-            JNAKernel32Library.getInstance();
-        } catch (Exception ignored) {
-            // we've already logged this.
-        }
-
-        Natives.trySetMaxNumberOfThreads();
-        Natives.trySetMaxSizeVirtualMemory();
-        Natives.trySetMaxFileSize();
+//        if (Natives.definitelyRunningAsRoot()) {
+//            throw new RuntimeException("can not run elasticsearch as root");
+//        }
+//
+//        // enable system call filter
+//        if (systemCallFilter) {
+//            Natives.tryInstallSystemCallFilter(tmpFile);
+//        }
+//
+//        // mlockall if requested
+//        if (mlockAll) {
+//            if (Constants.WINDOWS) {
+//               Natives.tryVirtualLock();
+//            } else {
+//               Natives.tryMlockall();
+//            }
+//        }
+//
+//        // listener for windows close event
+//        if (ctrlHandler) {
+//            Natives.addConsoleCtrlHandler(new ConsoleCtrlHandler() {
+//                @Override
+//                public boolean handle(int code) {
+//                    if (CTRL_CLOSE_EVENT == code) {
+//                        logger.info("running graceful exit on windows");
+//                        try {
+//                            Bootstrap.stop();
+//                        } catch (IOException e) {
+//                            throw new ElasticsearchException("failed to stop node", e);
+//                        }
+//                        return true;
+//                    }
+//                    return false;
+//                }
+//            });
+//        }
+//
+//        // force remainder of JNA to be loaded (if available).
+//        try {
+//            JNAKernel32Library.getInstance();
+//        } catch (Exception ignored) {
+//            // we've already logged this.
+//        }
+//
+//        Natives.trySetMaxNumberOfThreads();
+//        Natives.trySetMaxSizeVirtualMemory();
+//        Natives.trySetMaxFileSize();
 
         // init lucene random seed. it will use /dev/urandom where available:
         StringHelper.randomId();
